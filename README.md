@@ -2,7 +2,7 @@
 
 A simple and efficient currency converter application that allows users to quickly convert between different currencies in real time. Built with React.js and Tailwind CSS, this app provides a clean and responsive interface for seamless currency conversions.  
 
-![Currency Converter Screenshot](link-to-screenshot)  
+![Currency Converter Screenshot](https://i.imgur.com/axFvC9Y.png)  
 
 ## 🚀 Features  
 
