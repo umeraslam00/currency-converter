@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-//import './App.css'
+import './index.css'
+import InputBox from './components/InputBox'
 
 function App() {
   const [currencies, setCurrencies] = useState({})
@@ -7,9 +8,6 @@ function App() {
   const [fromCurrency, setFromCurrency] = useState('usd')
   const [toCurrency, setToCurrency] = useState('pkr')
 
-  /*
-     https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json
-  */
 
     useEffect(() => {
        fetch(`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${fromCurrency}.json`)
@@ -31,22 +29,26 @@ function App() {
     }
 
   return (
-    <div>
-      <input type="number" value={fromAmount} onChange={(e) => {setFromAmount(e.target.value)}}/>
+   
+    <div className='w-full h-screen flex justify-center items-center flex-col' style={{
+      backgroundImage: `url('https://i.imgur.com/Pbhaip3.jpeg')`,
+    }}>
+      
 
-      <select value={fromCurrency} onChange={(e) => {setFromCurrency(e.target.value)}}>
-        {currencyOptions.map( (currency) => <option key={currency}>{currency}</option>)}
-      </select>
+      <h1 className='text-white font-extrabold text-[2.5rem] mb-4'>Currency Converter App</h1>
+      <div className='flex flex-col border-4 w-[60%] h-[36%] rounded-lg justify-center bg-[#607d8b85]'>
+        
+        <InputBox label="From" amount={fromAmount} amountChange={setFromAmount} currency={fromCurrency} setCurrency={setFromCurrency} currencyOptions={currencyOptions} amountDisable={false} />
+        
 
-      <button onClick={currencySwap}>Swap</button>
+        <div className='flex justify-center absolute left-[46%] top-[51%] bg-black py-2 px-4 z-50 rounded-lg w-[9%] h-[6%] border-3 text-white font-bold'>
+          <button onClick={currencySwap}>Swap</button>
+        </div>
 
-      <input type="number" value={toAmount} disabled/>
-
-      <select value={toCurrency} onChange={(e) => {setToCurrency(e.target.value)}}>
-        {currencyOptions.map( (currency) => <option key={currency}>{currency}</option>  )}
-      </select>
-
-
+        
+        <InputBox label="To" amount={toAmount} currency={toCurrency} setCurrency={setToCurrency} currencyOptions={currencyOptions} amountDisable={true} />
+        
+      </div>
 
     </div>
   )
